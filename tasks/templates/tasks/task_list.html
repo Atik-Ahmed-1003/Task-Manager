@@ -26,7 +26,7 @@
                     | Due: {{ task.due_date }}
 
                     | <a href="{% url 'task_update' task.pk %}">Edit</a>
-                    | <a href="{% url 'task_delete' task.pk %}">Delete</a>
+                    | <a href="{% url 'task_delete' task.pk %}?next=list">Delete</a>
                 </li>
             {% endfor %}
         </ul>
