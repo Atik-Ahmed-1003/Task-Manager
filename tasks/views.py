@@ -3,6 +3,7 @@ from .models import Task
 from .forms import TaskForm
 
 
+
 def task_list(request):
     tasks = Task.objects.all().order_by('due_date')
     return render(request, 'tasks/task_list.html', {'tasks': tasks})
@@ -55,3 +56,6 @@ def task_delete(request, pk):
     return render(request, 'tasks/task_confirm_delete.html', {
         'task': task
     })
+
+def about(request):
+    return render(request, 'tasks/about.html')

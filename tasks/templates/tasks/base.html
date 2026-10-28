@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Todo List{% endblock %} | Task Manager</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/style.css' %}">
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <a href="{% url 'task_list' %}" class="brand">
+                <span class="brand-icon">✓</span>
+                <span>Task<span class="brand-accent">Flow</span></span>
+            </a>
+
+            <p class="sidebar-label">WORKSPACE</p>
+
+            <nav class="sidebar-nav">
+                <a href="{% url 'task_list' %}" class="nav-link">
+                    <span class="nav-icon">⌂</span>
+                    <span>HOME</span>
+                </a>
+
+                <a href="{% url 'about' %}" class="nav-link">
+                    <span class="nav-icon">ⓘ</span>
+                    <span>ABOUT</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="online-dot"></span>
+                <span>Stay productive</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-area">
+
+            <header class="topbar">
+                <div>
+                    <span class="topbar-label">YOUR PERSONAL WORKSPACE</span>
+                </div>
+
+                <button type="button" id="theme-toggle"
+                        class="theme-toggle" aria-label="Switch color theme">
+                    ☀ Light mode
+                </button>
+            </header>
+
+            <section class="page-content">
+                {% block content %}
+                {% endblock %}
+            </section>
+
+            <footer class="page-footer">
+                <span>TaskFlow</span>
+                <span>Plan it. Do it. Complete it.</span>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById("theme-toggle");
+
+        function applyTheme(theme) {
+            document.documentElement.dataset.theme = theme;
+
+            const isDark = theme === "dark";
+
+            themeToggle.textContent = isDark ? "☀ Light mode" : "☾ Dark mode";
+            themeToggle.setAttribute(
+                "aria-label",
+                isDark ? "Switch to light mode" : "Switch to dark mode"
+            );
+        }
+
+        const savedTheme = localStorage.getItem("taskflow-theme") || "dark";
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener("click", function () {
+            const currentTheme =
+                document.documentElement.dataset.theme || "dark";
+
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+            localStorage.setItem("taskflow-theme", newTheme);
+            applyTheme(newTheme);
+        });
+    </script>
+</body>
+</html>

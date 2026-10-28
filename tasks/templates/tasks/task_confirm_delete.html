@@ -1,26 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Task | Task Manager</title>
-</head>
-<body>
-    <h1>Delete Task</h1>
+{% extends 'tasks/base.html' %}
+
+{% block title %}Delete Task{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div>
+        <p class="eyebrow">TASK MANAGEMENT</p>
+        <h1 class="hero-title">Delete Task<span class="title-dot">.</span></h1>
+    </div>
+</div>
+
+<div class="task-panel about-panel">
+    <h2>Are you sure?</h2>
 
     <p>
-        Are you sure you want to delete
+        Do you really want to delete
         <strong>{{ task.title }}</strong>?
     </p>
 
     <form method="POST">
         {% csrf_token %}
+        <button type="submit" class="button">
+            Yes, Delete Task
+        </button>
 
-        <button type="submit">Yes, Delete Task</button>
+        {% if request.GET.next == 'list' %}
+            <a href="{% url 'task_list' %}" class="button">
+                Cancel
+            </a>
+        {% else %}
+            <a href="{% url 'task_detail' task.pk %}" class="button">
+                Cancel
+            </a>
+        {% endif %}
     </form>
-
-    <p>
-        <a href="{% if request.GET.next == 'list' %}{% url 'task_list' %}{% else %}{% url 'task_detail' task.pk %}{% endif %}">Cancel</a>
-    </p>
-</body>
-</html>
+</div>
+{% endblock %}

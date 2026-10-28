@@ -1,0 +1,78 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div>
+        <p class="eyebrow">GET TO KNOW TASKFLOW</p>
+        <h1 class="hero-title">
+            About<br>TaskFlow<span class="title-dot">.</span>
+        </h1>
+        <p class="hero-date">
+            A simple way to organize your work and stay productive.
+        </p>
+    </div>
+</section>
+
+<div class="task-panel about-panel">
+
+    <section>
+        <h2>What is TaskFlow?</h2>
+        <p>
+            TaskFlow is a simple task management web application built
+            with Django. It helps users organize daily activities,
+            manage responsibilities and keep track of important tasks
+            in one place.
+        </p>
+    </section>
+
+    <section>
+        <h2>What Does It Do?</h2>
+        <p>
+            Users can create new tasks, view task details, edit existing
+            tasks and delete tasks with a confirmation step. Each task
+            includes a title, description, status, due date and creation
+            time.
+        </p>
+        <p>
+            Tasks can be tracked through three statuses:
+            Pending, In Progress and Completed.
+        </p>
+    </section>
+
+    <section>
+        <h2>Key Features</h2>
+        <ul>
+            <li>Create and manage tasks.</li>
+            <li>View complete task details.</li>
+            <li>Edit task information and status.</li>
+            <li>Delete tasks after confirmation.</li>
+            <li>Set due dates and track progress.</li>
+            <li>Switch between Dark Mode and Light Mode.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Technologies Used</h2>
+        <p>Python · Django · SQLite · HTML · CSS</p>
+    </section>
+
+    <section class="developer-section">
+        <p class="eyebrow">DEVELOPER</p>
+        <h2>Meet the Developer</h2>
+        <h3>Atik Ahmed</h3>
+        <p>
+            This Task Manager application was developed by Atik Ahmed
+            as a Django web development project to demonstrate CRUD
+            operations, database integration and template-based
+            application development.
+        </p>
+    </section>
+
+    <a href="{% url 'task_list' %}" class="button">
+        ← Back to Home
+    </a>
+
+</div>
+{% endblock %}

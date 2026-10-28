@@ -1,23 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} | Task Manager</title>
-</head>
-<body>
-    <h1>{{ title }}</h1>
+{% extends 'tasks/base.html' %}
 
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div>
+        <p class="eyebrow">TASK MANAGEMENT</p>
+        <h1 class="hero-title">{{ title }}<span class="title-dot">.</span></h1>
+        <p class="hero-date">Create or update your task details.</p>
+    </div>
+</div>
+
+<div class="task-panel about-panel">
     <form method="POST">
         {% csrf_token %}
 
         {{ form.as_p }}
 
-        <button type="submit">Save Task</button>
+        <button type="submit" class="button">Save Task</button>
+        <a href="{% url 'task_list' %}" class="button">Cancel</a>
     </form>
-
-    <p>
-        <a href="{% url 'task_list' %}">Back to Home</a>
-    </p>
-</body>
-</html>
+</div>
+{% endblock %}
